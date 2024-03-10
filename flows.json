@@ -1,0 +1,245 @@
+[
+    {
+        "id": "79b54c888d8f8683",
+        "type": "tab",
+        "label": "Flow 4",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "db908c4ac8d4bbbe",
+        "type": "mqtt out",
+        "z": "79b54c888d8f8683",
+        "name": "",
+        "topic": "esp32/output",
+        "qos": "1",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "10e78a89.5b4fd5",
+        "x": 690,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "08aa23d4af85bf90",
+        "type": "ui_button",
+        "z": "79b54c888d8f8683",
+        "name": "",
+        "group": "9cf23ade0aa38dac",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "label": "Feed",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "on",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 690,
+        "y": 240,
+        "wires": [
+            [
+                "59c0ee5e88779c39"
+            ]
+        ]
+    },
+    {
+        "id": "a9184512.6d0338",
+        "type": "file",
+        "z": "79b54c888d8f8683",
+        "name": "WriteFile",
+        "filename": "D:\\foon\\work\\Iot\\mqtt_pub_sub/time-schedule0.txt",
+        "filenameType": "str",
+        "appendNewline": true,
+        "createDir": true,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 700,
+        "y": 200,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "4d5aed99.b82234",
+        "type": "inject",
+        "z": "79b54c888d8f8683",
+        "name": "FireAfterReboot",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 220,
+        "wires": [
+            [
+                "efd15a17.372ff8"
+            ]
+        ]
+    },
+    {
+        "id": "efd15a17.372ff8",
+        "type": "file in",
+        "z": "79b54c888d8f8683",
+        "name": "ReadFile",
+        "filename": "D:\\foon\\work\\Iot\\mqtt_pub_sub/time-schedule0.txt",
+        "filenameType": "str",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "dec834a4.768678"
+            ]
+        ]
+    },
+    {
+        "id": "dec834a4.768678",
+        "type": "ui_time_scheduler",
+        "z": "79b54c888d8f8683",
+        "group": "2b7ac01b.fc984",
+        "name": "",
+        "startDay": "0",
+        "refresh": 60,
+        "devices": [
+            "Device 1"
+        ],
+        "singleOff": false,
+        "onlySendChange": false,
+        "customPayload": false,
+        "eventMode": true,
+        "eventOptions": [
+            {
+                "label": "On",
+                "event": "true"
+            }
+        ],
+        "sendTopic": false,
+        "lat": "",
+        "lon": "",
+        "customContextStore": "",
+        "outputs": 2,
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "x": 490,
+        "y": 220,
+        "wires": [
+            [
+                "a9184512.6d0338"
+            ],
+            [
+                "08aa23d4af85bf90"
+            ]
+        ]
+    },
+    {
+        "id": "59c0ee5e88779c39",
+        "type": "delay",
+        "z": "79b54c888d8f8683",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "0.6",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "allowrate": false,
+        "outputs": 1,
+        "x": 730,
+        "y": 300,
+        "wires": [
+            [
+                "db908c4ac8d4bbbe"
+            ]
+        ]
+    },
+    {
+        "id": "10e78a89.5b4fd5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "localhost",
+        "port": "18883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "9cf23ade0aa38dac",
+        "type": "ui_group",
+        "name": "Devices",
+        "tab": "99ab8dc5.f435c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "2b7ac01b.fc984",
+        "type": "ui_group",
+        "name": "Scheduler",
+        "tab": "99ab8dc5.f435c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "99ab8dc5.f435c",
+        "type": "ui_tab",
+        "name": "Pets Feeder",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
